@@ -27,8 +27,6 @@ class developer(models.Model):
     )
     def __str__(self):
         return self.surname
-    def age(self):
-        return self.age
     class Meta:
         verbose_name = 'Сотрудник'
         verbose_name_plural = 'Сотрудники'
