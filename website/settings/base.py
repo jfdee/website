@@ -1,22 +1,17 @@
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Project settings
+# region#############
+
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'icy2e2e%mh)1dx+!=n=9+dv6*($fyr&m1+m48$+25vfrd+gq0z'
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
 ALLOWED_HOSTS = []
 
+# endregion##############
 
 # Application definition
+# region##########
 
 DJANGO_APS = [
     'django.contrib.admin',
@@ -25,7 +20,7 @@ DJANGO_APS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    ]
+]
 
 PROJECT_APPS = [
     'main'
@@ -44,6 +39,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'website.urls'
+WSGI_APPLICATION = 'website.wsgi.application'
+
+# endregion###########
+
+# Templates
+# region###########
 
 TEMPLATES = [
     {
@@ -61,11 +62,11 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'website.wsgi.application'
 
+# endregion#############
 
 # Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+# region############
 
 DATABASES = {
     'default': {
@@ -73,10 +74,10 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+# endregion############
 
 # Password validation
-# https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
+# region############
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -93,22 +94,22 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# endregion############
 
 # Internationalization
-# https://docs.djangoproject.com/en/3.1/topics/i18n/
+# region#############
 
 LANGUAGE_CODE = 'ru'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
+# endregion############
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
+# Static files
+# region###########
 
 STATIC_URL = '/static/'
+
+# endregion############
