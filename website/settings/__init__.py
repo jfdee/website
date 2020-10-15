@@ -1,6 +1,4 @@
-from .production import *
-
 try:
     from .development import *
-except:
-    pass
+except ImportError:
+    from .base import *
