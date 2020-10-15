@@ -1,16 +1,17 @@
 from pathlib import Path
 
-
-# region Project settings
+# Project settings
+# region#############
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SECRET_KEY = 'icy2e2e%mh)1dx+!=n=9+dv6*($fyr&m1+m48$+25vfrd+gq0z'
 DEBUG = False
 ALLOWED_HOSTS = []
 
-# endregion
+# endregion##############
 
-# region Application definition
+# Application definition
+# region##########
 
 DJANGO_APS = [
     'django.contrib.admin',
@@ -38,6 +39,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'website.urls'
+WSGI_APPLICATION = 'website.wsgi.application'
+
+# endregion###########
+
+# Templates
+# region###########
 
 TEMPLATES = [
     {
@@ -55,11 +62,11 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'website.wsgi.application'
 
-# endregion
+# endregion#############
 
-# region Database
+# Database
+# region############
 
 DATABASES = {
     'default': {
@@ -67,10 +74,10 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-# endregion
+# endregion############
 
-
-# region Password validation
+# Password validation
+# region############
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -87,26 +94,22 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# endregion
+# endregion############
 
-
-# region Internationalization
+# Internationalization
+# region#############
 
 LANGUAGE_CODE = 'ru'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
-# endregion
+# endregion############
 
-
-# region Static files (CSS, JavaScript, Images)
+# Static files
+# region###########
 
 STATIC_URL = '/static/'
 
-# endregion
+# endregion############
