@@ -1,17 +1,33 @@
 from django.shortcuts import render
 
 # Create your views here.
-def index(request):
-    return render(request, 'main/index.html')
 
-def schedule(request):
-    return render(request, 'main/schedule.html')
 
-def products(request):
-    return render(request, 'main/products.html')
+def render_main_template(request, template_name: str):
+    """Render something template function"""
+    return render(request, f'main/{template_name}')
 
-def developers(request):
-    return render(request, 'main/developers.html')
 
-def reports(request):
-    return render(request, 'main/reports.html')
+def index(request) -> str:
+    """Return template of main page and render it"""
+    return render_main_template(request, 'index.html')
+
+
+def schedule(request) -> str:
+    """Return template of schedule page and render it"""
+    return render_main_template(request, 'schedule.html')
+
+
+def products(request) -> str:
+    """Return template of products page and render it"""
+    return render_main_template(request, 'products.html')
+
+
+def developers(request) -> str:
+    """Return template of developers page and render it"""
+    return render_main_template(request, 'developers.html')
+
+
+def reports(request) -> str:
+    """Return template of reports page and render it"""
+    return render_main_template(request, 'reports.html')
