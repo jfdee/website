@@ -5,3 +5,22 @@
 {% block pagename %}
 Наши продукты
 {%endblock%}
+
+{% block pageContent %}
+
+<form enctype="multipart/form-data" action="" method="POST">
+         {% csrf_token %}
+<input type="file" name="file">
+    <br>
+    <br>
+    <input type="submit" value="get hash">
+</form>
+<br>
+
+File name : {{fileName}}
+<br>
+SHA-256 : {{sha256}}
+<br>
+SHA-1 : {{sha1}}
+
+{% endblock %}
