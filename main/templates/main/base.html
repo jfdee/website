@@ -56,12 +56,6 @@
               Отзывы
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-              Integrations
-            </a>
-          </li>
         </ul>
 
       </div>
@@ -71,7 +65,7 @@
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
           <h1 class="h2">{% block pagename %}{%endblock%}</h1>
         </div>
-        <div>Content will be here</div>
+        <div>{% block pageContent %} {% endblock %}</div>
     </main>
 
 </body>

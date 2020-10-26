@@ -1,11 +1,11 @@
 from django.shortcuts import render
-
+from .models import Developer
 # Create your views here.
 
 
-def render_main_template(request, template_name: str):
+def render_main_template(request, template_name: str, someDict=None):
     """Render something template function"""
-    return render(request, f'main/{template_name}')
+    return render(request, f'main/{template_name}', someDict)
 
 
 def index(request) -> str:
@@ -25,7 +25,8 @@ def products(request) -> str:
 
 def developers(request) -> str:
     """Return template of developers page and render it"""
-    return render_main_template(request, 'developers.html')
+    developer_list = Developer.myManager.by_age('19')
+    return render_main_template(request, 'developers.html', {'developer_list': developer_list})
 
 
 def reports(request) -> str:
