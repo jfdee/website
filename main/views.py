@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .models import Developer
 from main.logic.utils import *
+from django.core.files.base import ContentFile
+import io
 # Create your views here.
 
 
@@ -22,10 +24,12 @@ def schedule(request) -> str:
 def products(request):
     """Return template of products page and render it"""
     if request.method == "POST":
-        inputFile = request.FILES['file']
-        sha256 = get_hash_sha256(inputFile.name)
-        sha1 = get_hash_sha1(inputFile.name)
-        context = {'fileName': inputFile.name, 'sha256': sha256, 'sha1': sha1}
+        file_object = request.FILES['file']
+        file_stream: bytes = file_object.read()
+        file_object.seek(0)
+        sha256 = get_hash_sha256(file_stream)
+        sha1 = get_hash_sha1(file_stream)
+        context = {'fileName': file_object.name, 'sha256': sha256, 'sha1': sha1}
         return render_main_template(request, 'products.html', context)
     else:
         return render_main_template(request, 'products.html')
@@ -33,7 +37,7 @@ def products(request):
 
 def developers(request) -> str:
     """Return template of developers page and render it"""
-    developer_list = Developer.myManager.by_surname('Садовников')
+    developer_list = Developer.myManager.find_developer(surname='Петров')
     return render_main_template(request, 'developers.html', {'developer_list': developer_list})
 
 

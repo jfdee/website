@@ -1,13 +1,15 @@
 import hashlib
 
 
-def get_hash_sha256(file):
+def get_hash_sha256(file: bytes):
     """Return SHA256 hash of file"""
-    file = file.encode('utf-8')
-    return hashlib.sha256(file).hexdigest()
+    hashId = hashlib.sha256()
+    hashId.update(file)
+    return hashId.hexdigest()
 
 
-def get_hash_sha1(file):
+def get_hash_sha1(file: bytes):
     """Return SHA1 hash of file"""
-    file = file.encode('utf-8')
-    return hashlib.sha1(file).hexdigest()
+    hashId = hashlib.sha1()
+    hashId.update(file)
+    return hashId.hexdigest()

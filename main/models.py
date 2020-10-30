@@ -24,14 +24,14 @@ class DeveloperManager(models.Manager):
     def all(self):
         return self.get_queryset()
 
-    def by_surname(self, surname):
-        return self.get_queryset().by_surname(surname)
-
-    def by_name(self, name):
-        return self.get_queryset().by_name(name)
-
-    def by_age(self, age):
-        return self.get_queryset().by_age(age)
+    def find_developer(self, **kwargs):
+        for key, value in kwargs.items():
+            if key == 'surname':
+                return self.get_queryset().by_surname(value)
+            if key == 'name':
+                return self.get_queryset().by_name(value)
+            if key == 'age':
+                return self.get_queryset().by_age(value)
 
 
 class Developer(models.Model):
