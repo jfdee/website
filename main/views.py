@@ -2,18 +2,16 @@ from django.shortcuts import render
 from main.logic.utils import *
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework import viewsets
 
-from .serializers import DeveloperListSerializer
+from .serializers import DeveloperSerializer
 from .models import Developer
 
 
-class DeveloperListView(APIView):
+class DeveloperView(viewsets.ModelViewSet):
     """Print developer list"""
-    def get(self, request):
-        developers = Developer.myManager.find_developer(age='18')
-        serializer = DeveloperListSerializer(developers, many=True)
-        return Response(serializer.data)
-
+    queryset = Developer.myManager.get_queryset()
+    serializer_class = DeveloperSerializer
 
 
 def render_main_template(request, template_name: str, context=None):
