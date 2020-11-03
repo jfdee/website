@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 
 # Project settings
 # region#############
@@ -20,6 +21,7 @@ DJANGO_APS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 ]
 
 PROJECT_APPS = [
@@ -111,5 +113,8 @@ USE_TZ = True
 # region###########
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # endregion############
