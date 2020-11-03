@@ -21,6 +21,7 @@ DJANGO_APS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 ]
 
 PROJECT_APPS = [

@@ -1,9 +1,19 @@
 from django.shortcuts import render
-from .models import Developer
 from main.logic.utils import *
-from django.core.files.base import ContentFile
-import io
-# Create your views here.
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from .serializers import DeveloperListSerializer
+from .models import Developer
+
+
+class DeveloperListView(APIView):
+    """Print developer list"""
+    def get(self, request):
+        developers = Developer.myManager.find_developer(age='18')
+        serializer = DeveloperListSerializer(developers, many=True)
+        return Response(serializer.data)
+
 
 
 def render_main_template(request, template_name: str, context=None):
@@ -34,12 +44,12 @@ def products(request):
     else:
         return render_main_template(request, 'products.html')
 
-
+'''
 def developers(request) -> str:
     """Return template of developers page and render it"""
     developer_list = Developer.myManager.find_developer(surname='Петров')
     return render_main_template(request, 'developers.html', {'developer_list': developer_list})
-
+'''
 
 def reports(request) -> str:
     """Return template of reports page and render it"""
