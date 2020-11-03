@@ -1,7 +1,5 @@
 from django.shortcuts import render
 from main.logic.utils import *
-from rest_framework.response import Response
-from rest_framework.views import APIView
 from rest_framework import viewsets
 
 from .serializers import DeveloperSerializer
@@ -10,7 +8,7 @@ from .models import Developer
 
 class DeveloperView(viewsets.ModelViewSet):
     """Print developer list"""
-    queryset = Developer.myManager.get_queryset()
+    queryset = Developer.objects
     serializer_class = DeveloperSerializer
 
 
