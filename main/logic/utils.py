@@ -1,5 +1,7 @@
 import hashlib
 import re
+from lxml import etree
+import json
 
 
 def get_hash_sha256(file: bytes) -> str:
@@ -33,3 +35,14 @@ def get_count_leaf_binary_tree(string, count=0) -> int:
             return get_count_leaf_binary_tree(string, count)
         else:
             return count
+
+
+def xml_to_json(xml):
+    tree = etree.parse(xml)
+    xslt_root = etree.parse("xml2json.xsl")
+    transform = etree.XSLT(xslt_root)
+    result = transform(tree)
+    json_load = json.loads(str(result))
+    json_dump = json.dumps(json_load, indent=2)
+
+    return json_dump
