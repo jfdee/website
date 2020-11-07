@@ -1,8 +1,9 @@
 import hashlib
 import re
-from lxml import etree
 import json
-
+from lxml import etree
+from typing import Optional, Union
+from django.core.files.base import ContentFile, BytesIO
 
 def get_hash_sha256(file: bytes) -> str:
     """Return SHA256 hash of file"""
@@ -18,26 +19,29 @@ def get_hash_sha1(file: bytes) -> str:
     return hash_id.hexdigest()
 
 
-def get_count_leaf_binary_tree(string, count=0) -> int:
-    """Return count leaf of binary tree"""
+def get_count_leaf_binary_tree(string: str, count: int = 0) -> int:
+    """Method for get count leaf of binary tree"""
+    KEY_INDEX_FOR_MATCH: int = 0
+    AMOUNT_LEAF_IF_TWO_ELEMENTS: int = 2
+    AMOUNT_LEAF_IF_ONE_ELEMENTS: int = 1
     # Если есть два дочерних листка (Например, [3,3])
-    match = re.search(r'\[\d+\,\d+\]', string)
-    if match:
-        string = string.replace(match[0], '')
-        count = count + 2
+    match: Optional[str] = re.search(r'\[\d+\,\d+\]', string)
+    if match is not None:
+        string = string.replace(match[KEY_INDEX_FOR_MATCH], '')
+        count = count + AMOUNT_LEAF_IF_TWO_ELEMENTS
         return get_count_leaf_binary_tree(string, count)
     else:
         # Если дочерний лист только один (Например, [9])
-        match = re.search(r'\[\d+\]', string)
-        if match:
-            string = string.replace(match[0], '')
-            count = count + 1
+        match: Optional[str] = re.search(r'\[\d+\]', string)
+        if match is not None:
+            string = string.replace(match[KEY_INDEX_FOR_MATCH], '')
+            count = count + AMOUNT_LEAF_IF_ONE_ELEMENTS
             return get_count_leaf_binary_tree(string, count)
-        else:
-            return count
+    return count
 
 
-def xml_to_json(xml):
+def xml_to_json(xml: Union[str, BytesIO, ContentFile]) -> str:
+    """Method for convert XML to JSON"""
     tree = etree.parse(xml)
     xslt_root = etree.parse("xml2json.xsl")
     transform = etree.XSLT(xslt_root)
