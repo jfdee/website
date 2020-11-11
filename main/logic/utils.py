@@ -5,6 +5,7 @@ from lxml import etree
 from typing import Optional, Union
 from django.core.files.base import ContentFile, BytesIO
 
+
 def get_hash_sha256(file: bytes) -> str:
     """Return SHA256 hash of file"""
     hash_id = hashlib.sha256()

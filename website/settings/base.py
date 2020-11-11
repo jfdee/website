@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SECRET_KEY = 'icy2e2e%mh)1dx+!=n=9+dv6*($fyr&m1+m48$+25vfrd+gq0z'
 DEBUG = False
 ALLOWED_HOSTS = []
-
+CORS_ORIGIN_ALLOW_ALL = False
 # endregion##############
 
 # Application definition
@@ -21,16 +21,19 @@ DJANGO_APS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
 ]
 
 PROJECT_APPS = [
-    'main'
+    'main',
+    'rest_framework',
+    'corsheaders',
 ]
 
 INSTALLED_APPS = DJANGO_APS + PROJECT_APPS
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
