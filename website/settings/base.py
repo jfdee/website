@@ -6,8 +6,8 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SECRET_KEY = 'icy2e2e%mh)1dx+!=n=9+dv6*($fyr&m1+m48$+25vfrd+gq0z'
-DEBUG = False
-ALLOWED_HOSTS = []
+DEBUG = True
+ALLOWED_HOSTS = ['*']
 
 # endregion##############
 
@@ -63,7 +63,6 @@ TEMPLATES = [
         },
     },
 ]
-
 
 # endregion#############
 

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from main.logic.utils import *
 from rest_framework import viewsets
+from rest_framework.response import Response
 
 from .serializers import DeveloperSerializer
 from .models import Developer
@@ -8,8 +9,11 @@ from .models import Developer
 
 class DeveloperView(viewsets.ModelViewSet):
     """Print developer list"""
-    queryset = Developer.objects
+    queryset = Developer.objects.all()
     serializer_class = DeveloperSerializer
+
+    def create(self, request, *args, **kwargs):
+        a = 5
 
 
 def render_main_template(request, template_name: str, context=None):
@@ -40,12 +44,14 @@ def products(request):
     else:
         return render_main_template(request, 'products.html')
 
+
 '''
 def developers(request) -> str:
     """Return template of developers page and render it"""
     developer_list = Developer.myManager.find_developer(surname='Петров')
     return render_main_template(request, 'developers.html', {'developer_list': developer_list})
 '''
+
 
 def reports(request) -> str:
     """Return template of reports page and render it"""

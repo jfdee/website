@@ -1,11 +1,11 @@
 from django.urls import path
 from . import views
 
-from main.views import DeveloperView
+from .views import DeveloperView
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
-router.register(r'developers', DeveloperView)
+router.register(r'developers', DeveloperView, 'developers')
 urlpatterns = [
     path('', views.index, name=''),
     path('schedule', views.schedule, name='schedule'),
