@@ -1,8 +1,10 @@
+from django.http import JsonResponse
 from django.shortcuts import render
+from rest_framework.decorators import action
+
 from main.logic.utils import *
 from rest_framework import viewsets
 from rest_framework.response import Response
-
 from .serializers import DeveloperSerializer
 from .models import Developer
 
@@ -31,16 +33,15 @@ def schedule(request) -> str:
     return render_main_template(request, 'schedule.html')
 
 
+@action(methods=['GET', 'POST'], detail=True)
 def products(request):
     """Return template of products page and render it"""
     if request.method == "POST":
-        file_object = request.FILES['file']
-        file_stream: bytes = file_object.read()
-        file_object.seek(0)
-        sha256 = get_hash_sha256(file_stream)
-        sha1 = get_hash_sha1(file_stream)
-        context = {'fileName': file_object.name, 'sha256': sha256, 'sha1': sha1}
-        return render_main_template(request, 'products.html', context)
+        file_object = request.body
+        sha256 = get_hash_sha256(file_object)
+        sha1 = get_hash_sha1(file_object)
+        context = {'sha256': sha256, 'sha1': sha1}
+        return JsonResponse(context)
     else:
         return render_main_template(request, 'products.html')
 
