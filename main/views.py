@@ -38,7 +38,6 @@ def products(request):
     """Return template of products page and render it"""
     if request.method == "POST":
         file_object = request.body
-        print(file_object)
         sha256 = get_hash_sha256(file_object)
         sha1 = get_hash_sha1(file_object)
         context = {'sha256': sha256, 'sha1': sha1}
