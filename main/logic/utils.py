@@ -4,6 +4,8 @@ import json
 from lxml import etree
 from typing import Optional, Union
 from django.core.files.base import ContentFile, BytesIO
+from PIL import Image
+
 
 def get_hash_sha256(file: bytes) -> str:
     """Return SHA256 hash of file"""
@@ -50,3 +52,24 @@ def xml_to_json(xml: Union[str, BytesIO, ContentFile]) -> str:
     json_dump = json.dumps(json_load, indent=2)
 
     return json_dump
+
+
+def crop_image(path: str) -> Image:
+    """Return new cropped image"""
+    COUNT_COORDS = 4
+    img = Image.open(path)
+    coords = map(int, input('Coords:').split()[:COUNT_COORDS])
+    cropped = img.crop(coords)
+    return cropped
+
+
+def united_images(*paths) -> Image:
+    """Return new united image"""
+    COUNT_IMAGES = len(paths)
+    img = Image.new('RGB', (500 * COUNT_IMAGES, 500))
+    k = 0
+    for path in paths:
+        imageTemp = Image.open(path)
+        img.paste(imageTemp, (500 * k, 0))
+        k = k + 1
+    return img
